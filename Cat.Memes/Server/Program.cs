@@ -4,7 +4,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 if (builder.Environment.IsProduction())
 {
-    // Add production configuration here
+    builder.Configuration.AddAzureAppConfiguration(options => 
+        options.Connect(
+            new Uri(builder.Configuration["AppConfigEndpoint"] ?? throw new InvalidOperationException()),
+            new ManagedIdentityCredential())
+        .ConfigureKeyVault(kv =>
+        {
+            kv.SetCredential(new ManagedIdentityCredential());
+        }));
 }
 
 // Add services to the container.
