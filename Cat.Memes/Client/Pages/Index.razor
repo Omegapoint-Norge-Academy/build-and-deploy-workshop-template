@@ -17,12 +17,10 @@ else if (_catMemes.Count is 0)
 else
 {
     <div style="display: flex; flex-direction: column; gap: 1rem;">
-        @foreach (var catMeme in _catMemes)
+    @foreach (var catMeme in _catMemes)
         {
             <div>
-                <img src="@catMeme.Image"
-                     width="500px"
-                     alt="A cat meme"/>
+                <img src="@catMeme.Image" width="500px" alt="A cat meme, yay" />
             </div>
         }
     </div>
